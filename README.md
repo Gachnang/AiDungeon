@@ -10,4 +10,4 @@ You made a deal with a demon: You can't die, but are cursed with extrem bad luck
 You try your best to get even a bit luck with four-leaf clover or horseshoes, but it is unsuccessful.
 
 ## Memory
-You can't die, but are cursed with extrem bad luck.
+You can't die, but are cursed with extrem bad luck. You are never lucky.
