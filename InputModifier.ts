@@ -29,24 +29,24 @@ const stackInputFunction: ((text: string) => string)[] = [
         // unlucky...
         if (!state.memory.authorsNote)
             return text;
-
+        /*
         if (typeof state.unluckLevel !== "number") {
             state.unluckLevel = 0;
         } else {
             state.unluckLevel++;
-        }
+        }*/
+        state.unluckLevel = info.actionCount % 16;
 
         if (state.unluckLevel < 3) {
             state.memory.authorsNote = state.youare + " You feel a bit unlucky.";
         } else if (state.unluckLevel < 6) {
             state.memory.authorsNote = state.youare + " You feel unlucky.";
         } else if (state.unluckLevel < 9) {
-            state.memory.authorsNote = state.youare + " You feel a very unlucky, like something unlucky is about to happen.";
+            state.memory.authorsNote = state.youare + " You feel a very unlucky, like something unlucky is about to happen to you.";
         } else if (state.unluckLevel < 12) {
-            state.memory.authorsNote = state.youare + " You feel a extreme unlucky, something unlucky must happen!";
+            state.memory.authorsNote = state.youare + " You feel a extreme unlucky, something unlucky must happen to you!";
         } else {
-            state.memory.authorsNote = state.youare;
-            state.unluckLevel = 0;
+            state.memory.authorsNote = state.youare + " You get misfortune and are out of luck, bad luck strikes you.";
         }
 
         return text;

@@ -9,8 +9,8 @@ declare const state: State & {
 
 const stackOutputFunction = [
     function (text: string): string {
-        //undie
-        let regexp = new RegExp(/(you die)|(killed you)|(you get killed)/gmi);
+        //undie: First part of regex ignores everything in quotes, rest of it match keywords "you die"..
+        let regexp = new RegExp(/(?<=^([^"]|"[^"]*")*)((you .{0,30} die)|(killed .{0,30} you)|(you .{0,30} get killed)|(You .{0,30} dead))/gmi);
         if (regexp.test(text)) {
             text += " You feel how the curse forces you to stay alive and even heals you.";
             if (typeof state.deathcounter === "number") {
