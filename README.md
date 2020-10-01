@@ -11,3 +11,4 @@ You try your best to get even a bit luck with four-leaf clover or horseshoes, bu
 
 ## Memory
 You can't die, but are cursed with extrem bad luck. You are never lucky.
+Every time you die, you get healed and forced to stay alive.
