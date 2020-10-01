@@ -1,4 +1,4 @@
-import {memory, state, text} from "./index";
+import * as global from "./index";
 import {stacker} from "./SharedLibrary";
 
 const stackInputFunction = [
@@ -16,7 +16,7 @@ const stackInputFunction = [
                 i++;
             }
 
-            memory = memoryArray[i] + "\n" + (memory || "");
+            //memory = memoryArray[i] + "\n" + (memory || "");
             state.stackInput = state.stackInput.filter(sO => sO != 1);
             console.log(memory);
         }

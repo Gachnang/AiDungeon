@@ -1,23 +1,13 @@
-export declare const text: string;
-
 // @ts-ignore
-declare type History = Readonly<HistoryEntry[]>;
-declare type HistoryEntry = Readonly<{
+export type History = Readonly<HistoryEntry[]>;
+export type HistoryEntry = Readonly<{
     text: string,
     type: "story" | "continue" | "do" | "say";
 }>;
-// @ts-ignore
-// You have access to (but can't modify) the history object which is a list of the previous actions of the player and of the AI.
-export declare const history: History;
 
-declare type Quests = string;
-// You can modify the quests property to change the quests of the adventure mid game.
-export declare const quests: Quests;
+export type Quests = string;
 
-// You have access to (but can't modify) the memory object which is the current user defined memory.
-export declare const memory: string;
-
-declare type Memory = {
+export type Memory = {
     // You can modify the memory the game uses by settings the state.memory.context value. This will replace the user defined memory.
     context: string | undefined;
     // You can also set state.memory.frontMemory, which will include whatever is there in front of even the last action when it's fed into the model, but still not display it to the user.
@@ -26,18 +16,36 @@ declare type Memory = {
     authorsNote: string | undefined;
 };
 
-declare type State = {
+export type State = {
     // You can set any variable on state to store and modify adventures throughout an adventure.
     [key: string]: any,
     memory: Memory,
     // The state.message value will be displayed as a extra message in the game (if it exists)
     message: string | undefined};
-// The state variable can be used to store information that's persistent across function calls.
-export declare const state : State;
 
-declare type WorldEntries = {[key: string]: string};
-// You can read from the worldEntries parameter (same as world info that you can set on the scenario)
-export declare const worldEntries : WorldEntries;
-export declare const addWorldEntry: (keys: string, entry: string) => void;
-export declare const removeWorldEntry: (index) => void;
-export declare const updateWorldEntry: (index, keys: string, entry: string) => void;
+export type WorldEntry = Readonly<{
+    id: string,
+    // Comma separated keys
+    keys: string,
+    entry: string,
+    isNotHidden: boolean
+}>
+export type WorldEntries = ReadonlyArray<WorldEntry>;
+
+declare global {
+    const text: string;
+    // @ts-ignore
+    // You have access to (but can't modify) the history object which is a list of the previous actions of the player and of the AI.
+    const history: History;
+    // You can modify the quests property to change the quests of the adventure mid game.
+    const quests: Quests;
+    // You have access to (but can't modify) the memory object which is the current user defined memory.
+    const memory: string;
+    // The state variable can be used to store information that's persistent across function calls.
+    const state : State;
+    // You can read from the worldEntries parameter (same as world info that you can set on the scenario)
+    const worldEntries : WorldEntries;
+    const addWorldEntry: (keys: string, entry: string) => void;
+    const removeWorldEntry: (index) => void;
+    const updateWorldEntry: (index, keys: string, entry: string) => void;
+}

@@ -1,4 +1,5 @@
-export function stacker(stackFunction: ((text: string) => string)[], stackValue: number[], text: string): string {
+export type stacker= (stackFunction: ((text: string) => string)[], stackValue: number[], text: string) => string;
+function stacker(stackFunction: ((text: string) => string)[], stackValue: number[], text: string): string {
     if (Array.isArray(stackFunction) && Array.isArray(stackValue)) {
         let result = text || "", stackValueCopy = stackValue.concat([]), i = stackValueCopy.length;
         while (i > 0) {
@@ -17,4 +18,8 @@ export function stacker(stackFunction: ((text: string) => string)[], stackValue:
         return result;
     }
     throw "Wrong parameters!";
+}
+
+declare global {
+    var stacker: stacker
 }
