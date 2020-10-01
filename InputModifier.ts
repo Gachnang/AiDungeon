@@ -1,5 +1,10 @@
 import * as global from "./index";
 import {stacker} from "./SharedLibrary";
+import {State} from "./index";
+
+declare const state: State & {
+    stackInput: number[] | undefined;
+}
 
 const stackInputFunction = [
     function (text) {
@@ -16,14 +21,14 @@ const stackInputFunction = [
                 i++;
             }
 
-            //memory = memoryArray[i] + "\n" + (memory || "");
+            state.memory.frontMemory = memoryArray[i] + "\n" + (state.memory.frontMemory || "");
             state.stackInput = state.stackInput.filter(sO => sO != 1);
             console.log(memory);
         }
     }
 ];
 
-const modifier = (text) => {
+const modifier = (text: string) => {
     if (!state.stackInput)
         state.stackInput = [1,0];
 

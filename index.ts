@@ -23,6 +23,14 @@ export type State = {
     // The state.message value will be displayed as a extra message in the game (if it exists)
     message: string | undefined};
 
+export type Info = {
+    // All modifiers have access to info.actionCount, the number of actions in the adventure so far.
+    actionCount: number;
+    // When in a Context Modifier, info.memoryLength and info.maxChars are also set, indicating the length of the memory portion of text (if any), and the total allowed length of the context after which it will be truncated.
+    memoryLength: number;
+    maxChars: number;
+}
+
 export type WorldEntry = Readonly<{
     id: string,
     // Comma separated keys
@@ -31,6 +39,7 @@ export type WorldEntry = Readonly<{
     isNotHidden: boolean
 }>
 export type WorldEntries = ReadonlyArray<WorldEntry>;
+
 
 declare global {
     const text: string;
@@ -43,6 +52,8 @@ declare global {
     const memory: string;
     // The state variable can be used to store information that's persistent across function calls.
     const state : State;
+    // info contains some useful values, depending on which modifier you're in.
+    const info: Info;
     // You can read from the worldEntries parameter (same as world info that you can set on the scenario)
     const worldEntries : WorldEntries;
     const addWorldEntry: (keys: string, entry: string) => void;
